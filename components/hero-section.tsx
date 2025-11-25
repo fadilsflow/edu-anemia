@@ -48,7 +48,7 @@ export default function HeroSection() {
             </Button>
 
             <Button asChild variant="outline">
-              <Link href="#risiko">
+              <Link href="/risk-check">
                 <span className="text-nowrap">Cek Resiko</span>
               </Link>
             </Button>

@@ -43,7 +43,7 @@ export default function RiskCheckerPage() {
   }
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData({
@@ -56,102 +56,131 @@ export default function RiskCheckerPage() {
   };
 
   const calculateRisk = () => {
-    let riskLevel = "Rendah";
+    let riskLevel = "Normal";
     let riskScore = 0;
     let recommendations: string[] = [];
-
-    // Hemoglobin normal ranges
-    const normalRanges: { [key: string]: [number, number] } = {
-      "laki-laki": [13.5, 17.5],
-      "perempuan-tidak-hamil": [12.0, 15.5],
-      "perempuan-hamil": [11.0, 14.0],
+    let classification = {
+      non: 0,
+      ringan: [0, 0],
+      sedang: [0, 0],
+      berat: 0,
     };
+    let populationName = "";
 
-    let targetRange = normalRanges["laki-laki"];
-    if (formData.gender === "perempuan") {
-      if (formData.pregnant === "yes") {
-        targetRange = normalRanges["perempuan-hamil"];
+    const { age, gender, pregnant, hemoglobin } = formData;
+
+    // Determine population and thresholds
+    if (pregnant === "yes") {
+      populationName = "Ibu Hamil";
+      classification = {
+        non: 11.0,
+        ringan: [10.0, 10.9],
+        sedang: [7.0, 9.9],
+        berat: 7.0,
+      };
+    } else if (age < 5) {
+      populationName = "Anak (6-59 bulan)";
+      classification = {
+        non: 11.0,
+        ringan: [10.0, 10.9],
+        sedang: [7.0, 9.9],
+        berat: 7.0,
+      };
+    } else if (age >= 5 && age <= 11) {
+      populationName = "Anak (5-11 tahun)";
+      classification = {
+        non: 11.5,
+        ringan: [11.0, 11.4],
+        sedang: [8.0, 10.9],
+        berat: 8.0,
+      };
+    } else if (age >= 12 && age <= 14) {
+      populationName = "Anak (12-14 tahun)";
+      classification = {
+        non: 12.0,
+        ringan: [11.0, 11.4],
+        sedang: [8.0, 10.9],
+        berat: 8.0,
+      };
+    } else if (age >= 15) {
+      if (gender === "perempuan") {
+        populationName = "Wanita (≥ 15 tahun)";
+        classification = {
+          non: 12.0,
+          ringan: [11.0, 11.9],
+          sedang: [8.0, 10.9],
+          berat: 8.0,
+        };
       } else {
-        targetRange = normalRanges["perempuan-tidak-hamil"];
+        populationName = "Laki-laki (≥ 15 tahun)";
+        classification = {
+          non: 13.0,
+          ringan: [11.0, 12.9],
+          sedang: [8.0, 10.9],
+          berat: 8.0,
+        };
       }
     }
 
-    // Check hemoglobin levels
-    if (formData.hemoglobin < targetRange[0]) {
-      const deficiency = targetRange[0] - formData.hemoglobin;
-      riskScore += deficiency > 2 ? 30 : 20;
-      if (formData.hemoglobin < 11) {
-        riskLevel = "Sangat Tinggi";
-      } else if (formData.hemoglobin < targetRange[0]) {
-        riskLevel = "Tinggi";
-      }
-    } else if (formData.hemoglobin > targetRange[1]) {
-      riskScore += 10;
-      riskLevel = "Perlu Evaluasi";
-    } else {
-      riskScore += 5;
-    }
-
-    // Age factor for remaja
-    if (formData.age >= 10 && formData.age <= 19) {
-      riskScore += 5;
-      recommendations.push(
-        "Masa remaja memerlukan perhatian khusus karena pertumbuhan pesat",
-      );
-    }
-
-    // Gender-specific factors
-    if (
-      formData.gender === "perempuan" &&
-      formData.pregnant === "no" &&
-      formData.age >= 12
-    ) {
-      riskScore += 5;
-      recommendations.push(
-        "Sebagai remaja putri, konsumsi TTD sangat penting (1 tablet per minggu)",
-      );
-    }
-
-    if (formData.pregnant === "yes") {
-      riskScore += 10;
-      recommendations.push(
-        "Sebagai ibu hamil, konsultasi dengan dokter sangat diperlukan",
-      );
-    }
-
-    // Determine risk level based on score
-    if (formData.hemoglobin < 11) {
-      riskLevel = "Sangat Tinggi";
-    } else if (formData.hemoglobin < targetRange[0]) {
-      riskLevel = "Tinggi";
-    } else if (formData.hemoglobin <= targetRange[1]) {
+    // Determine Risk Level
+    if (hemoglobin >= classification.non) {
       riskLevel = "Normal";
       recommendations = [
         "Pertahankan pola hidup sehat dan konsumsi nutrisi seimbang",
+        "Terus jaga asupan zat besi dari makanan bergizi",
+        "Tidur cukup dan olahraga teratur",
       ];
+    } else if (
+      hemoglobin >= classification.ringan[0] &&
+      hemoglobin <= classification.ringan[1]
+    ) {
+      riskLevel = "Anemia Ringan";
+      riskScore = 20;
+    } else if (
+      hemoglobin >= classification.sedang[0] &&
+      hemoglobin <= classification.sedang[1]
+    ) {
+      riskLevel = "Anemia Sedang";
+      riskScore = 50;
     } else {
-      riskLevel = "Perlu Evaluasi";
+      riskLevel = "Anemia Berat";
+      riskScore = 80;
     }
 
-    // Add recommendations
-    if (riskLevel === "Normal") {
-      recommendations.push("Terus jaga asupan zat besi dari makanan bergizi");
-      recommendations.push("Lanjutkan konsumsi TTD sesuai program kesehatan");
-      recommendations.push("Tidur cukup dan olahraga teratur");
-    } else if (riskLevel === "Tinggi" || riskLevel === "Sangat Tinggi") {
+    // Additional Recommendations based on specific conditions
+    if (riskLevel !== "Normal") {
       recommendations.push(
-        "Segera konsultasikan dengan petugas kesehatan atau dokter",
+        "Segera konsultasikan dengan petugas kesehatan atau dokter"
       );
       recommendations.push("Tingkatkan konsumsi makanan tinggi zat besi");
-      recommendations.push("Konsumsi TTD secara rutin sesuai anjuran");
+      recommendations.push("Konsumsi TTD (Tablet Tambah Darah) sesuai anjuran");
       recommendations.push("Hindari minum teh/kopi bersamaan dengan zat besi");
+    }
+
+    if (age >= 10 && age <= 19) {
+      recommendations.push(
+        "Masa remaja memerlukan perhatian khusus karena pertumbuhan pesat"
+      );
+    }
+
+    if (gender === "perempuan" && pregnant === "no" && age >= 12) {
+      recommendations.push(
+        "Sebagai wanita usia subur, disarankan konsumsi TTD secara berkala (1 tablet per minggu)"
+      );
+    }
+
+    if (pregnant === "yes") {
+      recommendations.push(
+        "Ibu hamil sangat disarankan rutin memeriksakan kehamilan (ANC)"
+      );
     }
 
     setResult({
       riskLevel,
       riskScore,
       hemoglobin: formData.hemoglobin,
-      normalRange: targetRange,
+      populationName,
+      threshold: classification.non,
       recommendations,
     });
     setSubmitted(true);
@@ -170,11 +199,11 @@ export default function RiskCheckerPage() {
 
   const getRiskColor = (level: string) => {
     switch (level) {
-      case "Sangat Tinggi":
+      case "Anemia Berat":
         return "from-risk-very-high to-risk-very-high";
-      case "Tinggi":
+      case "Anemia Sedang":
         return "from-risk-high to-risk-high";
-      case "Perlu Evaluasi":
+      case "Anemia Ringan":
         return "from-risk-evaluation to-risk-evaluation";
       case "Normal":
         return "from-risk-normal to-risk-normal";
@@ -185,11 +214,11 @@ export default function RiskCheckerPage() {
 
   const getRiskBg = (level: string) => {
     switch (level) {
-      case "Sangat Tinggi":
+      case "Anemia Berat":
         return "bg-risk-very-high-light border-risk-very-high";
-      case "Tinggi":
+      case "Anemia Sedang":
         return "bg-risk-high-light border-risk-high";
-      case "Perlu Evaluasi":
+      case "Anemia Ringan":
         return "bg-risk-evaluation-light border-risk-evaluation";
       case "Normal":
         return "bg-risk-normal-light border-risk-normal";
@@ -208,7 +237,7 @@ export default function RiskCheckerPage() {
             width={100}
             height={100}
             className={`mx-auto mb-6 ${getRiskBg(
-              result.riskLevel,
+              result.riskLevel
             )} rounded-full p-4`}
           />
           <h2 className="text-3xl font-bold text-foreground mb-6 text-center">
@@ -219,19 +248,21 @@ export default function RiskCheckerPage() {
 
           <div
             className={`bg-linear-to-r ${getRiskColor(
-              result.riskLevel,
-            )} rounded-lg p-8 text-white text-center mb-8`}
+              result.riskLevel
+            )} rounded-lg p-8 text-white text-center mb-8 shadow-lg`}
           >
             <p className="text-sm font-semibold opacity-90 mb-2">
-              Tingkat Risiko
+              Kategori: {result.populationName}
             </p>
 
-            <p className="text-4xl font-bold">
-              <Highlighter>{result.riskLevel}</Highlighter>
+            <p className="text-4xl font-bold mb-2">
+              <Highlighter action="box">{result.riskLevel}</Highlighter>
             </p>
-            <p className="text-lg mt-4">Kadar Hb: {result.hemoglobin} g/dL</p>
-            <p className="text-sm opacity-90">
-              Normal: {result.normalRange[0]} - {result.normalRange[1]} g/dL
+            <p className="text-lg mt-4">
+              Kadar Hb Anda: {result.hemoglobin} g/dL
+            </p>
+            <p className="text-sm opacity-90 mt-1">
+              Batas Normal: ≥ {result.threshold} g/dL
             </p>
           </div>
 
@@ -344,15 +375,16 @@ export default function RiskCheckerPage() {
                 <Label className="block text-foreground font-semibold mb-2">
                   Sedang Hamil?
                 </Label>
-                <select
+                <NativeSelect
                   name="pregnant"
                   value={formData.pregnant}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border-2 border-input rounded-lg focus:border-secondary focus:outline-none text-foreground"
                 >
-                  <option value="no">Tidak</option>
-                  <option value="yes">Ya</option>
-                </select>
+                  <NativeSelectOptGroup label="Sedang Hamil?">
+                    <NativeSelectOption value="no">Tidak</NativeSelectOption>
+                    <NativeSelectOption value="yes">Ya</NativeSelectOption>
+                  </NativeSelectOptGroup>
+                </NativeSelect>
               </div>
             )}
 
@@ -372,8 +404,8 @@ export default function RiskCheckerPage() {
                 placeholder="Masukkan kadar Hb (contoh: 13.5)"
               />
               <p className="text-sm text-muted-foreground mt-2">
-                Kadar normal: Laki-laki 13.5-17.5, Perempuan 12.0-15.5 (hamil
-                11.0-14.0)
+                Kadar normal bervariasi (contoh: Laki-laki dewasa ≥ 13.0, Wanita
+                dewasa ≥ 12.0, Ibu Hamil ≥ 11.0)
               </p>
             </div>
 

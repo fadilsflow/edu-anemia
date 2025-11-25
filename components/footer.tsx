@@ -4,7 +4,7 @@ import Link from "next/link";
 const links = [
   { title: "Home", href: "/" },
   { title: "Cek Resiko", href: "/risk-check" },
-  { title: "Quiz", href: "/quiz" },
+  { title: "Kuis", href: "/quiz" },
 ];
 
 export default function FooterSection() {

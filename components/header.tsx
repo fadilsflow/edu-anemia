@@ -102,7 +102,7 @@ export const HeroHeader = () => {
               <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                 <Button asChild variant="ghost" size="sm">
                   <Link href="/quiz">
-                    <span>Quiz</span>
+                    <span>Kuis</span>
                   </Link>
                 </Button>
                 <Button asChild size="sm">
@@ -125,7 +125,7 @@ export const QuizHeader = () => {
       <nav className="max-w-2xl relative w-full bg-background flex items-center justify-centers mx-auto px-6 lg:px-0 py-3">
         <div className="flex items-center space-x-2 text-2xl font-bold">
           <Logo className="w-10 h-10" />
-          Quiz Anemia
+          Kuis Anemia
         </div>
 
         <AlertDialog>
