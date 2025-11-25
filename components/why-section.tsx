@@ -1,10 +1,11 @@
+// components/why-section
 "use client";
 import Image from "next/image";
 import { Highlighter } from "./ui/highlighter";
 
 export default function WhySection() {
   return (
-    <section>
+    <section id="why">
       <div className="py-24">
         <div className="mx-auto w-full max-w-5xl px-6">
           <div>
@@ -17,13 +18,6 @@ export default function WhySection() {
             >
               Kenapa <Highlighter action="highlight">Anemia</Highlighter> Bisa
               Terjadi?
-              <Image
-                src="/why.png"
-                alt="Explanation Image"
-                width={50}
-                height={50}
-                className="w-10 h-auto sm:w-12"
-              />
             </h2>
 
             <p className="text-muted-foreground mb-12 mt-4 text-lg">

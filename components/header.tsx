@@ -8,9 +8,13 @@ import { cn } from "@/lib/utils";
 import { Logo } from "./logo";
 
 const menuItems = [
-  { name: "Materi", href: "#explanation" },
-  { name: "Bank Soal", href: "#bank-soal" },
-  { name: "Cek Resiko", href: "#cek-resiko" },
+  { name: "Definisi", href: "#explanation" },
+  { name: "Kenapa", href: "#why" },
+  { name: "Tanda & Gejala", href: "#symptoms" },
+  { name: "Dampak", href: "#impact" },
+  { name: "Prevent", href: "#prevent" },
+  { name: "Tablet", href: "#tablet" },
+  { name: "Mitos", href: "#mitos" },
 ];
 
 export const Header = () => {
@@ -30,7 +34,7 @@ export const Header = () => {
         data-state={menuState && "active"}
         className={cn(
           "fixed z-20 w-full transition-all duration-300",
-          isScrolled && "bg-background",
+          isScrolled && "bg-background"
         )}
       >
         <div className="mx-auto max-w-5xl px-6">
@@ -90,7 +94,7 @@ export const Header = () => {
                   </Link>
                 </Button>
                 <Button asChild size="sm">
-                  <Link href="#">
+                  <Link href="#explanation">
                     <span>Mulai Belajar</span>
                   </Link>
                 </Button>
