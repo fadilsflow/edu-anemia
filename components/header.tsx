@@ -92,6 +92,7 @@ export const HeroHeader = () => {
                       <Link
                         href={item.href}
                         className="text-muted-foreground hover:text-accent-foreground block duration-150"
+                        onClick={() => setMenuState(false)}
                       >
                         <span>{item.name}</span>
                       </Link>
@@ -101,12 +102,12 @@ export const HeroHeader = () => {
               </div>
               <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                 <Button asChild variant="ghost" size="sm">
-                  <Link href="/quiz">
+                  <Link href="/quiz" onClick={() => setMenuState(false)}>
                     <span>Kuis</span>
                   </Link>
                 </Button>
                 <Button asChild size="sm">
-                  <Link href="/risk-check">
+                  <Link href="/risk-check" onClick={() => setMenuState(false)}>
                     <span>Cek Resiko</span>
                   </Link>
                 </Button>
