@@ -12,7 +12,7 @@ import {
 export default function ExplanationSection() {
   return (
     <section id="explanation">
-      <div>
+      <div className="py-24">
         <div className="mx-auto w-full max-w-5xl px-6">
           <div className="mx-auto max-w-5xl">
             <div>

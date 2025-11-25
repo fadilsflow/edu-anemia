@@ -29,8 +29,8 @@ const impacts = [
 
 export default function ImpactSection() {
   return (
-    <section id="impact" >
-      <div className="mx-auto w-full max-w-5xl px-6">
+    <section id="impact">
+      <div className="py-24 mx-auto w-full max-w-5xl px-6">
         <div className="mb-12">
           <h2 className="text-foreground text-4xl font-medium">
             Dampak <Highlighter action="highlight">Anemia</Highlighter> pada

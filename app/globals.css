@@ -37,6 +37,14 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-risk-very-high: var(--risk-very-high);
+  --color-risk-very-high-light: var(--risk-very-high-light);
+  --color-risk-high: var(--risk-high);
+  --color-risk-high-light: var(--risk-high-light);
+  --color-risk-evaluation: var(--risk-evaluation);
+  --color-risk-evaluation-light: var(--risk-evaluation-light);
+  --color-risk-normal: var(--risk-normal);
+  --color-risk-normal-light: var(--risk-normal-light);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -100,6 +108,16 @@
   --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
   --tracking-normal: 0em;
   --spacing: 0.25rem;
+
+  /* Risk Level Colors */
+  --risk-very-high: oklch(0.6368 0.2078 25.3313);
+  --risk-very-high-light: oklch(0.95 0.05 25.3313);
+  --risk-high: oklch(0.8027 0.1355 349.2347);
+  --risk-high-light: oklch(0.95 0.03 349.2347);
+  --risk-evaluation: oklch(0.8148 0.0819 225.7537);
+  --risk-evaluation-light: oklch(0.95 0.02 225.7537);
+  --risk-normal: oklch(0.8677 0.0735 7.0855);
+  --risk-normal-light: oklch(0.95 0.02 7.0855);
 }
 
 .dark {
@@ -157,6 +175,16 @@
   --shadow-xl:
     0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
   --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+
+  /* Risk Level Colors - Dark Mode */
+  --risk-very-high: oklch(0.6368 0.2078 25.3313);
+  --risk-very-high-light: oklch(0.85 0.08 25.3313);
+  --risk-high: oklch(0.8027 0.1355 349.2347);
+  --risk-high-light: oklch(0.85 0.06 349.2347);
+  --risk-evaluation: oklch(0.7395 0.2268 142.8504);
+  --risk-evaluation-light: oklch(0.85 0.05 142.8504);
+  --risk-normal: oklch(0.8148 0.0819 225.7537);
+  --risk-normal-light: oklch(0.85 0.04 225.7537);
 }
 
 @layer base {

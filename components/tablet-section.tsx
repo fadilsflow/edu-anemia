@@ -8,14 +8,14 @@ export default function TabletSection() {
 
   return (
     <section id="tablet">
-      <div className="mb-12 mx-auto w-full max-w-5xl px-6">
+      <div className="py-24  mx-auto w-full max-w-5xl px-6">
         <h2 className="text-foreground text-4xl font-medium">
           Tablet Tambah Darah{" "}
           <Highlighter action="highlight">(TTD)</Highlighter>
         </h2>
       </div>
       <div className="mx-auto w-full max-w-5xl px-6 flex flex-col divide-y divide-foreground/5">
-        <div className="flex flex-col lg:flex-row justify-between gap-12 pt-8 first:pt-0 ">
+        <div className="flex flex-col lg:flex-row justify-between gap-12  ">
           <div className="lg:w-1/2 pb-8">
             <div className="flex items-center space-x-3 mb-6">
               <Pill

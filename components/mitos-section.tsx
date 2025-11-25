@@ -31,7 +31,7 @@ const mythsFacts = [
 export default function MitosSection() {
   return (
     <section id="mitos">
-      <div className=" mx-auto w-full max-w-5xl px-6">
+      <div className="py-24 mx-auto w-full max-w-5xl px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-medium sm:text-5xl">
             <Highlighter action="highlight">Mitos</Highlighter> vs{" "}
@@ -55,7 +55,7 @@ export default function MitosSection() {
               key={index}
               className={cn(
                 "transition-transform duration-300 hover:scale-[1.03]",
-                item.type === "Mitos" ? "bg-primary/50" : "bg-secondary/50"
+                item.type === "Mitos" ? "bg-primary/50" : "bg-secondary/50",
               )}
             >
               <CardHeader className="pb-3">

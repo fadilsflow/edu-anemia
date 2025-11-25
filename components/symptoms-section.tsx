@@ -16,7 +16,7 @@ const symptomsList = [
 export default function SymptomsSection() {
   return (
     <section id="symptoms">
-      <div className="mx-auto w-full max-w-5xl px-6">
+      <div className=" py-24 mx-auto w-full max-w-5xl px-6">
         <div className="text-center">
           <h2 className="text-foreground mt-3 text-4xl font-medium">
             Tanda dan{" "}
@@ -29,20 +29,17 @@ export default function SymptomsSection() {
 
         <div className="mx-auto mt-12 grid max-w-4xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {symptomsList.map((symptom, index) => (
-            <Card
-              key={index}
-              className="bg-secondary/20"
-            >
+            <Card key={index} className="bg-secondary/20">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
-                  <span className="bg-primary p-1 rounded-full">{index + 1}</span>
+                  <span className="bg-primary p-1 rounded-full">
+                    {index + 1}
+                  </span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-xl font-semibold leading-relaxed text-foreground">
-                  <Highlighter action="underline">
-                    {symptom}
-                  </Highlighter>
+                  <Highlighter action="underline">{symptom}</Highlighter>
                 </p>
               </CardContent>
             </Card>

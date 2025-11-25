@@ -1,11 +1,23 @@
 "use client";
 import Link from "next/link";
 
-import { Menu, X } from "lucide-react";
+import { ChevronLeft, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Logo } from "./logo";
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const menuItems = [
   { name: "Definisi", href: "#explanation" },
@@ -17,7 +29,7 @@ const menuItems = [
   { name: "Mitos", href: "#mitos" },
 ];
 
-export const Header = () => {
+export const HeroHeader = () => {
   const [menuState, setMenuState] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
 
@@ -34,7 +46,7 @@ export const Header = () => {
         data-state={menuState && "active"}
         className={cn(
           "fixed z-20 w-full transition-all duration-300",
-          isScrolled && "bg-background"
+          isScrolled && "bg-background",
         )}
       >
         <div className="mx-auto max-w-5xl px-6">
@@ -89,19 +101,82 @@ export const Header = () => {
               </div>
               <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                 <Button asChild variant="ghost" size="sm">
-                  <Link href="#">
-                    <span>Cek Risiko</span>
+                  <Link href="/quiz">
+                    <span>Quiz</span>
                   </Link>
                 </Button>
                 <Button asChild size="sm">
-                  <Link href="#explanation">
-                    <span>Mulai Belajar</span>
+                  <Link href="/risk-check">
+                    <span>Cek Resiko</span>
                   </Link>
                 </Button>
               </div>
             </div>
           </div>
         </div>
+      </nav>
+    </header>
+  );
+};
+
+export const QuizHeader = () => {
+  return (
+    <header>
+      <nav className="max-w-2xl relative w-full bg-background flex items-center justify-centers mx-auto px-6 lg:px-0 py-3">
+        <div className="flex items-center space-x-2 text-2xl font-bold">
+          <Logo className="w-10 h-10" />
+          Quiz Anemia
+        </div>
+
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button
+              variant={"outline"}
+              size={"icon"}
+              className="absolute top-4 right-4"
+            >
+              <X className="w-6 h-6" />
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>
+                Apakah anda yakin ingin keluar?
+              </AlertDialogTitle>
+              <AlertDialogDescription>
+                Quiz anda akan direset, dan anda akan kembali ke halaman utama.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Batal</AlertDialogCancel>
+              <AlertDialogAction asChild>
+                <Link href="/">Ya</Link>
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </nav>
+    </header>
+  );
+};
+export const RiskCheckHeader = () => {
+  return (
+    <header>
+      <nav className="max-w-2xl relative w-full bg-background flex justify-center mx-auto items-center  px-6 lg:px-0 py-3">
+        <div className="flex items-center space-x-2 text-2xl font-bold">
+          <Logo className="w-10 h-10" />
+          Cek Risiko Anemia Anda
+        </div>
+        <Button
+          asChild
+          variant={"outline"}
+          size={"icon"}
+          className="absolute top-4 right-4"
+        >
+          <Link href="/">
+            <X className="w-6 h-6" />
+          </Link>
+        </Button>
       </nav>
     </header>
   );

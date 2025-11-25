@@ -1,11 +1,5 @@
 // components/prevent-section.tsx
-import {
-  Leaf,
-  Utensils,
-  Zap,
-  Sun,
-  AlertCircle,
-} from "lucide-react";
+import { Leaf, Utensils, Zap, Sun, AlertCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Highlighter } from "./ui/highlighter";
 
@@ -39,7 +33,7 @@ const preventions = [
 export default function PreventSection() {
   return (
     <section id="prevent">
-      <div className="mx-auto w-full max-w-5xl px-6">
+      <div className="py-24 mx-auto w-full max-w-5xl px-6">
         <div className="text-center mb-12">
           <h2 className="text-foreground mt-3 text-4xl font-medium">
             Cara Mencegah &{" "}
