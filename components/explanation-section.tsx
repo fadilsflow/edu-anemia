@@ -12,7 +12,7 @@ import {
 export default function ExplanationSection() {
   return (
     <section id="explanation">
-      <div className="py-24">
+      <div>
         <div className="mx-auto w-full max-w-5xl px-6">
           <div className="mx-auto max-w-5xl">
             <div>
@@ -20,7 +20,7 @@ export default function ExplanationSection() {
                 Apa itu <Highlighter>Anemia?</Highlighter>
               </h2>
 
-              <p className="text-muted-foreground mb-12 mt-4 text-xl">
+              <p className="text-muted-foreground mt-4 text-xl">
                 Anemia adalah kondisi ketika tubuh kekurangan{" "}
                 <Highlighter
                   action="underline"
@@ -29,7 +29,7 @@ export default function ExplanationSection() {
                   {" "}
                   sel darah merah{" "}
                 </Highlighter>{" "}
-                atau
+                atau{" "}
                 <Highlighter
                   action="underline"
                   color="oklch(0.8148 0.0819 225.7537)"
@@ -50,30 +50,36 @@ export default function ExplanationSection() {
               </p>
             </div>
 
-            <div className="mt-12 overflow-hidden rounded-lg border">
+            <div className="mt-5 overflow-hidden">
+              <div className="border-b ">
+                <p className="text-sm text-muted-foreground">
+                  Acuan Kadar Hemoglobin untuk diagnosis anemia (mg/l)
+                  berdasarkan populasi:
+                </p>
+              </div>
               <Table>
                 <TableHeader>
-                  <TableRow className="">
+                  <TableRow>
                     <TableHead
                       rowSpan={2}
-                      className="bg-primary font-bold text-center align-middle border-r"
+                      className="bg-primary/40 font-bold text-center align-middle border-r"
                     >
                       Populasi
                     </TableHead>
                     <TableHead
                       rowSpan={2}
-                      className="bg-primary font-bold text-center align-middle border-r"
+                      className="bg-primary/40 font-bold text-center align-middle border-r"
                     >
                       Non anemia
                     </TableHead>
                     <TableHead
                       colSpan={3}
-                      className="bg-primary font-bold text-center border-b"
+                      className="bg-primary/40 font-bold text-center border-b"
                     >
                       Anemia
                     </TableHead>
                   </TableRow>
-                  <TableRow className="bg-secondary/50">
+                  <TableRow className="bg-secondary/40">
                     <TableHead className="font-semibold text-center">
                       Ringan
                     </TableHead>

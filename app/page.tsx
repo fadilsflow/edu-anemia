@@ -1,3 +1,4 @@
+import CtaSection from "@/components/cta-section";
 import ExplanationSection from "@/components/explanation-section";
 import HeroSection from "@/components/hero-section";
 import ImpactSection from "@/components/impact-section";
@@ -9,7 +10,7 @@ import WhySection from "@/components/why-section";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="space-y-20 md:space-y-32">
       <HeroSection />
       <ExplanationSection />
       <WhySection />
@@ -18,6 +19,7 @@ export default function Home() {
       <PreventSection />
       <TabletSection />
       <MitosSection />
+      <CtaSection />
     </div>
   );
 }

@@ -4,7 +4,6 @@ import {
   Utensils,
   Zap,
   Sun,
-  ShieldCheck,
   AlertCircle,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -39,7 +38,7 @@ const preventions = [
 
 export default function PreventSection() {
   return (
-    <section id="prevent" className="py-24">
+    <section id="prevent">
       <div className="mx-auto w-full max-w-5xl px-6">
         <div className="text-center mb-12">
           <h2 className="text-foreground mt-3 text-4xl font-medium">

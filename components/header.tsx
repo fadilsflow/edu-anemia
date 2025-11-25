@@ -9,10 +9,10 @@ import { Logo } from "./logo";
 
 const menuItems = [
   { name: "Definisi", href: "#explanation" },
-  { name: "Kenapa", href: "#why" },
+  { name: "Kenapa?", href: "#why" },
   { name: "Tanda & Gejala", href: "#symptoms" },
   { name: "Dampak", href: "#impact" },
-  { name: "Prevent", href: "#prevent" },
+  { name: "Pencegahan", href: "#prevent" },
   { name: "Tablet", href: "#tablet" },
   { name: "Mitos", href: "#mitos" },
 ];

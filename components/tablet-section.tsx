@@ -7,7 +7,7 @@ export default function TabletSection() {
   const secondaryColor = "oklch(0.8677 0.0735 7.0855)";
 
   return (
-    <section id="tablet" className="py-24">
+    <section id="tablet">
       <div className="mb-12 mx-auto w-full max-w-5xl px-6">
         <h2 className="text-foreground text-4xl font-medium">
           Tablet Tambah Darah{" "}

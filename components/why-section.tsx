@@ -6,7 +6,7 @@ import { Highlighter } from "./ui/highlighter";
 export default function WhySection() {
   return (
     <section id="why">
-      <div className="py-24">
+      <div>
         <div className="mx-auto w-full max-w-5xl px-6">
           <div>
             <h2

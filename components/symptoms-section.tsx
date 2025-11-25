@@ -15,7 +15,7 @@ const symptomsList = [
 
 export default function SymptomsSection() {
   return (
-    <section id="symptoms" className="py-24">
+    <section id="symptoms">
       <div className="mx-auto w-full max-w-5xl px-6">
         <div className="text-center">
           <h2 className="text-foreground mt-3 text-4xl font-medium">
@@ -41,7 +41,7 @@ export default function SymptomsSection() {
               <CardContent>
                 <p className="text-xl font-semibold leading-relaxed text-foreground">
                   <Highlighter action="underline">
-                  {symptom}
+                    {symptom}
                   </Highlighter>
                 </p>
               </CardContent>

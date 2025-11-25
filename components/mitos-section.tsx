@@ -31,7 +31,7 @@ const mythsFacts = [
 export default function MitosSection() {
   return (
     <section id="mitos">
-      <div className="mx-auto w-full max-w-5xl px-6">
+      <div className=" mx-auto w-full max-w-5xl px-6">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-medium sm:text-5xl">
             <Highlighter action="highlight">Mitos</Highlighter> vs{" "}
