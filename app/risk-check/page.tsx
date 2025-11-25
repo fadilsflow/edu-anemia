@@ -43,7 +43,7 @@ export default function RiskCheckerPage() {
   }
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
     setFormData({
@@ -150,7 +150,7 @@ export default function RiskCheckerPage() {
     // Additional Recommendations based on specific conditions
     if (riskLevel !== "Normal") {
       recommendations.push(
-        "Segera konsultasikan dengan petugas kesehatan atau dokter"
+        "Segera konsultasikan dengan petugas kesehatan atau dokter",
       );
       recommendations.push("Tingkatkan konsumsi makanan tinggi zat besi");
       recommendations.push("Konsumsi TTD (Tablet Tambah Darah) sesuai anjuran");
@@ -159,19 +159,19 @@ export default function RiskCheckerPage() {
 
     if (age >= 10 && age <= 19) {
       recommendations.push(
-        "Masa remaja memerlukan perhatian khusus karena pertumbuhan pesat"
+        "Masa remaja memerlukan perhatian khusus karena pertumbuhan pesat",
       );
     }
 
     if (gender === "perempuan" && pregnant === "no" && age >= 12) {
       recommendations.push(
-        "Sebagai wanita usia subur, disarankan konsumsi TTD secara berkala (1 tablet per minggu)"
+        "Sebagai wanita usia subur, disarankan konsumsi TTD secara berkala (1 tablet per minggu)",
       );
     }
 
     if (pregnant === "yes") {
       recommendations.push(
-        "Ibu hamil sangat disarankan rutin memeriksakan kehamilan (ANC)"
+        "Ibu hamil sangat disarankan rutin memeriksakan kehamilan (ANC)",
       );
     }
 
@@ -237,7 +237,7 @@ export default function RiskCheckerPage() {
             width={100}
             height={100}
             className={`mx-auto mb-6 ${getRiskBg(
-              result.riskLevel
+              result.riskLevel,
             )} rounded-full p-4`}
           />
           <h2 className="text-3xl font-bold text-foreground mb-6 text-center">
@@ -248,7 +248,7 @@ export default function RiskCheckerPage() {
 
           <div
             className={`bg-linear-to-r ${getRiskColor(
-              result.riskLevel
+              result.riskLevel,
             )} rounded-lg p-8 text-white text-center mb-8 shadow-lg`}
           >
             <p className="text-sm font-semibold opacity-90 mb-2">

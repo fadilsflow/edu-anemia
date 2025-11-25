@@ -7,6 +7,7 @@ import { QuizOnboarding } from "@/components/quiz-onboarding";
 import Image from "next/image";
 import { Highlighter } from "@/components/ui/highlighter";
 import AnimatedSection from "@/components/animate-section";
+import Link from "next/link";
 
 interface Question {
   id: number;
@@ -398,10 +399,10 @@ export default function QuizPage() {
       percentage === 100
         ? "Sempurna! Kamu sudah menguasai semua materi tentang anemia! 🌟"
         : percentage >= 80
-          ? "Bagus sekali! Pemahaman kamu sudah sangat baik. 👍"
-          : percentage >= 60
-            ? "Cukup baik! Tapi ada beberapa bagian yang perlu dipelajari lagi."
-            : "Jangan putus asa! Kembali ke materi dan pelajari lagi.";
+        ? "Bagus sekali! Pemahaman kamu sudah sangat baik. 👍"
+        : percentage >= 60
+        ? "Cukup baik! Tapi ada beberapa bagian yang perlu dipelajari lagi."
+        : "Jangan putus asa! Kembali ke materi dan pelajari lagi.";
 
     return (
       <div className="max-w-2xl mx-auto px-4 py-12 min-h-screen flex items-center justify-center">
@@ -426,7 +427,7 @@ export default function QuizPage() {
               Mulai Ulang Kuis
             </Button>
             <Button onClick={handleRestart} asChild variant={"outline"}>
-              <a href="/#explanation">Belajar lagi dulu</a>
+              <Link href="/">Keluar</Link>
             </Button>
           </div>
         </div>
@@ -475,10 +476,10 @@ export default function QuizPage() {
                     showCorrect
                       ? "bg-emerald-100 border-emerald-500 text-emerald-900"
                       : showIncorrect
-                        ? "bg-red-100 border-red-500 text-red-900"
-                        : isSelected
-                          ? "bg-blue-100 border-blue-500 text-blue-900"
-                          : "bg-gray-50 border-gray-200 text-gray-900 hover:bg-gray-100 hover:border-blue-300 cursor-pointer"
+                      ? "bg-red-100 border-red-500 text-red-900"
+                      : isSelected
+                      ? "bg-blue-100 border-blue-500 text-blue-900"
+                      : "bg-gray-50 border-gray-200 text-gray-900 hover:bg-gray-100 hover:border-blue-300 cursor-pointer"
                   }`}
                 >
                   <div className="flex items-center gap-3">
@@ -487,10 +488,10 @@ export default function QuizPage() {
                         showCorrect
                           ? "bg-emerald-500 border-emerald-600 text-white"
                           : showIncorrect
-                            ? "bg-red-500 border-red-600 text-white"
-                            : isSelected
-                              ? "bg-blue-500 border-blue-600 text-white"
-                              : "border-gray-300"
+                          ? "bg-red-500 border-red-600 text-white"
+                          : isSelected
+                          ? "bg-blue-500 border-blue-600 text-white"
+                          : "border-gray-300"
                       }`}
                     >
                       {String.fromCharCode(65 + index)}

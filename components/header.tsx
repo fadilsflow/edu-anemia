@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 
-import { ChevronLeft, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { cn } from "@/lib/utils";
@@ -46,7 +46,7 @@ export const HeroHeader = () => {
         data-state={menuState && "active"}
         className={cn(
           "fixed z-20 w-full transition-all duration-300",
-          isScrolled && "bg-background",
+          isScrolled && "bg-background"
         )}
       >
         <div className="mx-auto max-w-5xl px-6">
