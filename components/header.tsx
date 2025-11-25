@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { Logo } from "./logo";
 
 const menuItems = [
-  { name: "Materi", href: "#materi" },
+  { name: "Materi", href: "#explanation" },
   { name: "Bank Soal", href: "#bank-soal" },
   { name: "Cek Resiko", href: "#cek-resiko" },
 ];
@@ -84,19 +84,12 @@ export const Header = () => {
                 </ul>
               </div>
               <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
-                <Button
-                  asChild
-                  variant="ghost"
-                  size="sm"
-                >
+                <Button asChild variant="ghost" size="sm">
                   <Link href="#">
                     <span>Cek Risiko</span>
                   </Link>
                 </Button>
-                <Button
-                  asChild
-                  size="sm"
-                >
+                <Button asChild size="sm">
                   <Link href="#">
                     <span>Mulai Belajar</span>
                   </Link>

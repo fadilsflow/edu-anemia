@@ -15,7 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Edukasi Anemia",
-  description: "Pelajari penyebab, gejala, pencegahan, dan cara menjaga kadar Hb tetap sehat.",
+  description:
+    "Pelajari penyebab, gejala, pencegahan, dan cara menjaga kadar Hb tetap sehat.",
 };
 
 export default function RootLayout({
